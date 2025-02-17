@@ -25,18 +25,18 @@ Perform this task on VN1-SRV8.
 
 Perform this task on CL1.
 
-    1. In AD Domains and Trusts: Add the default domain as Suffix ([figure 1]).
-    2. Change the UPN suffix for all users.
+1. In AD Domains and Trusts: Add the default domain as Suffix ([figure 1]).
+2. Change the UPN suffix for all users.
 
-        ````powershell
-        Get-ADUser -Filter { UserPrincipalname -like '*@ad.adatum.com' } |
-        ForEach-Object {
-            $PSItem | Set-ADUser -UserPrincipalName (
-                $PSItem.UserPrincipalName -replace `
-                    '(.*)@(.*)', '$1@M365x63029661.onmicrosoft.com'
-                )
-        }
-        ````
+    ````powershell
+    Get-ADUser -Filter { UserPrincipalname -like '*@ad.adatum.com' } |
+    ForEach-Object {
+        $PSItem | Set-ADUser -UserPrincipalName (
+            $PSItem.UserPrincipalName -replace `
+                '(.*)@(.*)', '$1@M365x63029661.onmicrosoft.com'
+            )
+    }
+    ````
     
 ### Task 4: Configure Entra ID Connect
 
